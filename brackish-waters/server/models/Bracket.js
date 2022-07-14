@@ -15,7 +15,7 @@ export const BracketSchema = new Schema(
 
 BracketSchema.virtual('competition',{
     localField: 'competitionId',
-    ref: 'Bracket',
+    ref: 'Competition',
     foreignField: '_id',
     justOne: true
 })
