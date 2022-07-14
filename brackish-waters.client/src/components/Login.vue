@@ -5,7 +5,7 @@
       @click="login"
       v-if="!user.isAuthenticated"
     >
-      Login
+      Admin Login
     </button>
 
     <div class="dropdown my-2 my-lg-0" v-else>
