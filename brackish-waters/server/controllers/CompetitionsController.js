@@ -3,6 +3,7 @@ import { bracketsService } from '../services/BracketsService'
 import { competitionsService } from '../services/CompetitionsService'
 import { teamsService } from '../services/TeamsService'
 import BaseController from '../utils/BaseController'
+import { logger } from '../utils/Logger'
 
 
 export class CompetitionsController extends BaseController {
@@ -10,17 +11,18 @@ export class CompetitionsController extends BaseController {
         super('api/competitions')
         this.router
             .get('', this.getAll)
-            .get(':/id', this.getById)
-            .get(':/id/brackets', this.getCompetitionBrackets)
-            .get(':/id/teams', this.getCompetitionTeams)
+            .get('/:id', this.getById)
+            .get('/:id/brackets', this.getCompetitionBrackets)
+            .get('/:id/teams', this.getCompetitionTeams)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.create)
-            .put(':/id', this.update)
-            .delete('/id', this.deleteCompetition)
+            .put('/:id', this.updateCompetition)
+            .delete('/:id', this.deleteCompetition)
 
     }
     async getAll(req, res, next) {
         try {
+            
             const competitions = await competitionsService.getAll(req.query)
             return res.send(competitions)
         } catch (error) {
@@ -59,9 +61,10 @@ export class CompetitionsController extends BaseController {
             next(error)
         }
     }
-    async update(req, res, next) {
+    async updateCompetition(req, res, next) {
         try {
-            const competition = await competitionsService.update(req.body)
+            
+            const competition = await competitionsService.updateCompetition(req.body, req.params.id)
             return res.send(competition)
         } catch (error) {
             next(error)

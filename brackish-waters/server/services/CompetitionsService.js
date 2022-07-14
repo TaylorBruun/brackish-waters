@@ -1,5 +1,6 @@
-import { dbContext } from "../db/DbContext"
 
+import { dbContext } from "../db/DbContext"
+import { logger } from "../utils/Logger"
 
 
 class CompetitionsService{
@@ -16,8 +17,8 @@ class CompetitionsService{
         let competition = await dbContext.Competitions.create(body)
         return competition
     }
-    async update(body) {
-        const original = await dbContext.Competitions.findById(body.id)
+    async updateCompetition(body, competitionId) {
+        const original = await dbContext.Competitions.findById(competitionId)
         original.name = body.name ? body.name : original.name
         original.startDate = body.startDate ? body.startDate : original.startDate
         original.img = body.img ? body.img : original.img
