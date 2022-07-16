@@ -15,6 +15,6 @@ export const TeamSchema = new Schema(
 
 TeamSchema.virtual('competition',{
     localField: 'competitionId',
-    ref: 'Bracket',
+    ref: 'Competition',
     foreignField: '_id',
 })

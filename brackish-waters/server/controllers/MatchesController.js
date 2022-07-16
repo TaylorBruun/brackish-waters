@@ -32,7 +32,7 @@ export class MatchesController extends BaseController {
     // }
     async deleteMatch(req, res, next) {
         try {
-            const match = await matchesService.deleteMatch(req.body)
+            const match = await matchesService.deleteMatch(req.params.id)
             return res.send(match)
         } catch (error) {
             next(error)

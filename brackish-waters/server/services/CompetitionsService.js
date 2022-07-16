@@ -1,5 +1,6 @@
 
 import { dbContext } from "../db/DbContext"
+import { BadRequest } from "../utils/Errors"
 import { logger } from "../utils/Logger"
 
 
@@ -10,6 +11,9 @@ class CompetitionsService{
     }
     async getById(id) {
         let competition = await dbContext.Competitions.findById(id)
+        if(!competition){
+            throw new BadRequest('A competition with that Id was not found')
+        }
         return competition
     }
     
@@ -19,6 +23,9 @@ class CompetitionsService{
     }
     async updateCompetition(body, competitionId) {
         const original = await dbContext.Competitions.findById(competitionId)
+        if(!original){
+            throw new BadRequest('A competition with that Id was not found')
+        }
         original.name = body.name ? body.name : original.name
         original.startDate = body.startDate ? body.startDate : original.startDate
         original.img = body.img ? body.img : original.img
@@ -26,8 +33,8 @@ class CompetitionsService{
         original.save()
         return original
     }
-    async deleteCompetition(body) {
-        const competition = await dbContext.Competitions.findById(body.id)
+    async deleteCompetition(id) {
+        const competition = await this.getById(id)
         await competition.remove()
         return competition
     }

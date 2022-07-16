@@ -72,7 +72,7 @@ export class CompetitionsController extends BaseController {
     }
     async deleteCompetition(req, res, next) {
         try {
-            const competition = await competitionsService.deleteCompetition(req.body)
+            const competition = await competitionsService.deleteCompetition(req.params.id)
             return res.send(competition)
         } catch (error) {
             next(error)

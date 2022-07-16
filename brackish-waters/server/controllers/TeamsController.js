@@ -22,6 +22,7 @@ export class TeamsController extends BaseController {
     }
     async edit(req, res, next) {
         try {
+            req.body.id = req.params.id
             const team = await teamsService.edit(req.body)
             return res.send(team)
         } catch (error) {
@@ -30,7 +31,7 @@ export class TeamsController extends BaseController {
     }
     async deleteTeam(req, res, next) {
         try {
-            const team = await teamsService.deleteTeam(req.body)
+            const team = await teamsService.deleteTeam(req.params.id)
             return res.send(team)
         } catch (error) {
             next(error)

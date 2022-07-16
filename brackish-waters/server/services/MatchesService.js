@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext"
+import { BadRequest } from "../utils/Errors"
 
 
 
@@ -16,8 +17,11 @@ class MatchesService{
     //     let match = await dbContext.Matches.findById(body.id)
         
     // }
-    async deleteMatch(body) {
-        let match = await dbContext.Matches.findById(body.id)
+    async deleteMatch(id) {
+        let match = await dbContext.Matches.findById(id)
+        if(!match){
+            throw new BadRequest('A match with that Id was not found')
+        }
         await match.remove()
         return match
     }
