@@ -17,6 +17,16 @@ const routes = [
     component: loadPage('AboutPage')
   },
   {
+    path: '/competition/:id',
+    name: 'CompetitionDetails',
+    component: loadPage('CompetitionDetailsPage')
+  },
+  {
+    path: '/competition/:id/brackets/:bracketId',
+    name: 'BracketDetails',
+    component: loadPage('BracketDetailsPage')
+  },
+  {
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),
