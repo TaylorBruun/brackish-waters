@@ -1,20 +1,20 @@
 <template>
     <div class="component">
 
-<div class="m-3 p-3">
-{{bracket.name}}
-</div>
-<div class="m-3 p-3">
-{{matches[0].round}}
-{{matches[1].round}}
-</div>
-<div class="m-3 p-3">
-{{teams[0].name}}
-{{teams[1].name}}
-{{teams[2].name}}
-{{display7()}}
-</div>
-        
+        <div class="m-3 p-3">
+            {{ bracket.name }}
+        </div>
+        <div class="m-3 p-3">
+            {{ matches[0].round }}
+            {{ matches[1].round }}
+        </div>
+        <div class="m-3 p-3">
+            {{ teams[0].name }}
+            {{ teams[1].name }}
+            {{ teams[2].name }}
+            {{ display7() }}
+        </div>
+
     </div>
 </template>
 
@@ -47,9 +47,9 @@ export default {
             matches: computed(() => AppState.bracketMatches),
             teams: computed(() => AppState.competitionTeams),
 
-        display7(){
-            return '7'
-        }
+            display7() {
+                return '7'
+            }
 
         }
     }
