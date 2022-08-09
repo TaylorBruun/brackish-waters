@@ -5,28 +5,16 @@
             {{ bracket.name }}
         </div>
         <div class="m-3 p-3">
-            {{ matches[0]?.round }}
-            {{ matches[1]?.round }}
+
+            <Match class="p-2" v-for="m in matches" :key="m.id" :match="m" />
+            
         </div>
         <div class="m-3 p-3">
-            {{ teams[0]?.name }}
-            {{ teams[1]?.name }}
-            {{ teams[2]?.name }}
+            
             {{ display7() }}
         </div>
         <div>
-            <v-stage :config="{ width: 200, height: 200 }">
-                <v-layer>
-                    <v-text></v-text>
-                    <v-rect :config="{
-                        x: 20,
-                        y: 50,
-                        width: 100,
-                        height: 100,
-                        fill: 'red',
-                    }" />
-                </v-layer>
-            </v-stage>
+            
         </div>
     </div>
 </template>
@@ -64,7 +52,7 @@ export default {
             teams: computed(() => AppState.competitionTeams),
 
             display7() {
-                return '7'
+                return 7
             },
 
             clicked(matchId) {

@@ -19,4 +19,11 @@ MatchSchema.virtual('bracket', {
     ref: 'Bracket',
     foreignField: '_id',
     justOne: true
+}),
+
+MatchSchema.virtual('matchTeams', {
+    localField: 'teams',
+    ref: 'Team',
+    foreignField: '_id',
+    justOne: false
 })

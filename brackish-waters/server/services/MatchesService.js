@@ -9,6 +9,7 @@ class MatchesService{
     async create(body) {
         let match = await dbContext.Matches.create(body)
         await match.populate('bracket')
+        await match.populate('matchTeams')
         return match
     }
 
@@ -28,6 +29,7 @@ class MatchesService{
     async getBracketMatches(bracketId) {
         const matches = await dbContext.Matches.find({bracketId: bracketId})
         .populate('bracket')
+        .populate('matchTeams')
         return matches
     }
 
