@@ -31,6 +31,7 @@ import { computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { AppState } from '../AppState'
 import { competitionsService } from '../services/CompetitionsService'
+import { logger } from '../utils/Logger'
 import Pop from '../utils/Pop'
 
 export default {
@@ -43,8 +44,8 @@ export default {
                 await competitionsService.getCompetitionById(route.params.id)
                 await competitionsService.getCompetitionBrackets(route.params.id)
             } catch (error) {
-                console.error(error)
-                Pop.error(error)
+                logger.error(error)
+                Pop.toast(error, 'error')
             }
         })
         return {

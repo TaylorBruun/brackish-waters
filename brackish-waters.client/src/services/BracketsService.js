@@ -12,6 +12,7 @@ class BracketsService{
         AppState.currentBracket = bracket
     }
     async getBracketMatches(id){
+        console.log("getting bracket matches on bracket id", id)
         let res = await api.get(`api/brackets/${id}/matches`)
         console.log(res.data)
         let matches = res.data

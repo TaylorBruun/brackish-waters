@@ -13,14 +13,15 @@
 
 <script>
 import { useRouter } from 'vue-router'
+import { bracketsService } from '../services/BracketsService'
 
 export default {
     props: { bracket: { type: Object, required: true } },
     setup(props) {
         const router = useRouter()
         return {
-
-            selectBracket() {
+            async selectBracket() {
+                await bracketsService.getBracketMatches(props.bracket.id)
                 console.log("pushing with id", props.bracket.id)
                 router.push({ name: "BracketDetails", params: { id: props.bracket.competitionId, bracketId: props.bracket.id } })
             },

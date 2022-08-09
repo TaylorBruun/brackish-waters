@@ -25,6 +25,7 @@ import { useRoute } from 'vue-router'
 import { AppState } from '../AppState'
 import { bracketsService } from '../services/BracketsService'
 import { competitionsService } from '../services/CompetitionsService'
+import { logger } from '../utils/Logger'
 import Pop from '../utils/Pop'
 
 export default {
@@ -34,11 +35,12 @@ export default {
         onMounted(async () => {
             try {
                 await bracketsService.getBracketById(route.params.bracketId)
+                console.log("here is on mounted sending id", id)
                 await bracketsService.getBracketMatches(route.params.bracketId)
                 await competitionsService.getCompetitionTeams(route.params.id)
             } catch (error) {
-                console.error(error)
-                Pop.error(error)
+                logger.error(error)
+                Pop.toast(error, 'error')
             }
         })
         return {

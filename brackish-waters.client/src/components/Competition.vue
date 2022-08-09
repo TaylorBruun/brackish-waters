@@ -1,7 +1,7 @@
 <template>
 
-    <div @click="selectCompetition" class="col-md-3 my-2 p-2">
-        <div class="competition-card">
+    <div class="col-md-3 my-2 p-2">
+        <div @click="selectCompetition" class="competition-card">
             <h3 class="p-2">{{ competition.name }}</h3>
             <img class="p-2 img-fluid" :src="competition.img" alt="">
             <h6 class="p-2 text-muted">Begins: {{ formatDate(competition.startDate) }}</h6>
