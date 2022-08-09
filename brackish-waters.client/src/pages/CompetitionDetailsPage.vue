@@ -35,6 +35,7 @@ import { logger } from '../utils/Logger'
 import Pop from '../utils/Pop'
 
 export default {
+    
     setup() {
         const route = useRoute()
 

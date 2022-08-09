@@ -8,7 +8,7 @@ class CompetitionsService{
 
 async getCompetitions(){
     let res = await api.get('api/competitions')
-    console.log(res.data)
+    console.log("here is get all competitions", res.data)
     AppState.competitions = res.data
 }
 

@@ -5,22 +5,35 @@
             {{ bracket.name }}
         </div>
         <div class="m-3 p-3">
-            {{ matches[0].round }}
-            {{ matches[1].round }}
+            {{ matches[0]?.round }}
+            {{ matches[1]?.round }}
         </div>
         <div class="m-3 p-3">
-            {{ teams[0].name }}
-            {{ teams[1].name }}
-            {{ teams[2].name }}
+            {{ teams[0]?.name }}
+            {{ teams[1]?.name }}
+            {{ teams[2]?.name }}
             {{ display7() }}
         </div>
-
+        <div>
+            <v-stage :config="{ width: 200, height: 200 }">
+                <v-layer>
+                    <v-text></v-text>
+                    <v-rect :config="{
+                        x: 20,
+                        y: 50,
+                        width: 100,
+                        height: 100,
+                        fill: 'red',
+                    }" />
+                </v-layer>
+            </v-stage>
+        </div>
     </div>
 </template>
 
 
 <script>
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, popScopeId } from 'vue'
 import { useRoute } from 'vue-router'
 import { AppState } from '../AppState'
 import { bracketsService } from '../services/BracketsService'
@@ -34,8 +47,9 @@ export default {
 
         onMounted(async () => {
             try {
+                console.log("here is bracketId", route.params.bracketId)
                 await bracketsService.getBracketById(route.params.bracketId)
-                console.log("here is on mounted sending id", id)
+                console.log("here is on mounted sending id", route.params.bracketId)
                 await bracketsService.getBracketMatches(route.params.bracketId)
                 await competitionsService.getCompetitionTeams(route.params.id)
             } catch (error) {
@@ -51,6 +65,10 @@ export default {
 
             display7() {
                 return '7'
+            },
+
+            clicked(matchId) {
+                Pop.toast(matchId, "info")
             }
 
         }

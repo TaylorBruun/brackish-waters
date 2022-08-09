@@ -22,7 +22,7 @@ export default {
         return {
             async selectBracket() {
                 await bracketsService.getBracketMatches(props.bracket.id)
-                console.log("pushing with id", props.bracket.id)
+                console.log("pushing router with id", props.bracket.id)
                 router.push({ name: "BracketDetails", params: { id: props.bracket.competitionId, bracketId: props.bracket.id } })
             },
         }
