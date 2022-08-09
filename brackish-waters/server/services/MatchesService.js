@@ -12,11 +12,11 @@ class MatchesService{
         return match
     }
 
-    // NOTE I don't think this is needed, its original use would be to set a winner of a match for the admin bracket, but the match will not exist until the admin goes to update the bracket anyway. Admin will create match with a winner, not update a previously existing match.
-    // async updateMatch(body) {
-    //     let match = await dbContext.Matches.findById(body.id)
+    // NOTE this is what normal users use to "create" their prediction. The prediction will be prepopulated with placeholder matches so that slots, etc can be defined by the Admin
+    async updateMatch(body) {
+        let match = await dbContext.Matches.findById(body.id)
         
-    // }
+    }
     async deleteMatch(id) {
         let match = await dbContext.Matches.findById(id)
         if(!match){
