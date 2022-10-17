@@ -43,6 +43,7 @@ export default {
             popTeam(text) {
                 Pop.toast(text, "info")
                 
+                
                 let nextMatch = AppState.bracketMatches.find(m => m.slot == props.match.nextSlot)
                 nextMatch.teams.push(nextMatch.id)
             }
