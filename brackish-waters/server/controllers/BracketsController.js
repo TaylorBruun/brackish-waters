@@ -18,19 +18,19 @@ export class BracketsController extends BaseController{
             .delete('/:id', this.deleteBracket)
 
     }
+    async getById(req, res, next) {
+        try {
+            const bracket = await bracketsService.getById(req.params.id)
+            return res.send(bracket)
+        } catch (error) {
+            next(error)
+        }
+    }
     async getBracketMatches(req, res, next) {
         try {
             let bracketId = req.params.id
             const matches = await matchesService.getBracketMatches(bracketId)
             return res.send(matches)
-        } catch (error) {
-            next(error)
-        }
-    }
-    async getById(req, res, next) {
-        try {
-            const bracket = await bracketsService.getById(req.params.id)
-            return res.send(bracket)
         } catch (error) {
             next(error)
         }
